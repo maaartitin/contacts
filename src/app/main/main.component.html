@@ -1,0 +1,167 @@
+<div class="container">
+
+<br>
+
+<div class="row justify-content-center">
+<button type="button" class="btn btn-primary text-uppercase" (click)="openModal(todoModal); check=true; alertDel();">add contact</button>
+</div>
+
+<br>
+<hr class='col-5'>
+<div class='col-6 m-auto'>
+
+  <form action="" *ngIf='checkAuditSearch'>
+    <div class="form-group text-center">
+      <label for="search" class='lead text-uppercase'>Search the contact</label>
+      <input type="text" name="search" id="" class="form-control" (keyup)='searchContact(contact.value)' #contact>
+    </div>
+  </form>
+
+  <hr>
+
+<table class='m-auto'>
+
+
+    <div *ngIf='checkSearch'>
+      <tr   *ngFor="let user of usersSearch; let i = index" class='column lead'>
+
+      
+
+        <div>
+        <button type="button" class="btn btn-sm btn-outline-secondary" 
+        (click)='editS = i;  check = false; openModal(todoModal); alertDel()'>EDIT</button>
+        <button type="button" class="btn btn-sm btn-outline-info" (click)='editI(i, true);' routerLink='/info'>INFO</button>
+        <button type="button" class="btn btn-sm btn-outline-danger"  (click)='delContact(i)'>DELETE</button>
+        </div>
+  
+        <span>
+            <td>{{user.firstName}} 	&nbsp;</td>
+            <td>{{user.lastName}}</td>
+        </span> 
+  <div class="w-100"></div>
+        <span>
+          <td>{{user.number}}</td>
+        </span>
+        <hr>
+        <div [ngStyle]='{"height":"20px"}'></div>
+    </tr>
+    </div>
+
+
+
+  <div *ngIf='!checkSearch'>
+  <tr   *ngFor="let user of users; let i = index" class='column lead'>
+
+      
+
+      <div>
+      <button type="button" class="btn btn-sm btn-outline-secondary" 
+      (click)='edit = i; check = false; openModal(todoModal); alertDel()'>EDIT</button>
+      <button type="button" class="btn btn-sm btn-outline-info" (click)='editI(i, true);' routerLink='/info'>INFO</button>
+      <button type="button" class="btn btn-sm btn-outline-danger"  (click)='delContact(i)'>DELETE</button>
+      </div>
+
+      <span>
+          <td>{{user.firstName}} 	&nbsp;</td>
+          <td>{{user.lastName}}</td>
+      </span> 
+<div class="w-100"></div>
+      <span>
+        <td>{{user.number}}</td>
+      </span>
+      <hr>
+      <div [ngStyle]='{"height":"20px"}'></div>
+  </tr>
+</div>
+</table>
+</div>
+
+<ng-template #todoModal>
+<div class='justify-content-right mr-2'>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+
+  <div class="justify-content-center modal-header">
+    <h4 class="modal-title" *ngIf=check>NEW CONTACT</h4>
+    <h4 class="modal-title" *ngIf=!check>EDIT CONTACT</h4>
+  </div>
+  <div class="modal-body">
+      <form>
+          <div class="form-group">
+            <div *ngIf=check>
+              <input type="text" class="form-control" name="" id="" placeholder="First name" #firstName>
+              <input type="text" class="form-control" name="" id="" placeholder="Second name" #secondName>
+              <input type="text" class="form-control" name="" id="" placeholder="Number" #number>
+              <input type="text" class="form-control" name="" id="" placeholder="City" #city>
+              <input type="text" class="form-control" name="" id="" placeholder="Age" #age>
+              <input type="text" class="form-control" name="" id="" placeholder="Photo (link)" #photo>
+
+              <button  type="button" class="btn btn-success float-right" 
+              (click)="addLS(firstName.value, secondName.value, number.value, city.value, age.value, photo.value)">ADD
+            </button>
+            </div>
+
+            <div *ngIf=!check >
+                <div *ngIf=!checkSearch>
+                <input type="text" class="form-control" name="" id="" placeholder="First name" #firstName 
+                value='{{this.users[edit].firstName}}'>
+                <input type="text" class="form-control" name="" id="" placeholder="Second name" #secondName 
+                value='{{this.users[edit].lastName}}'> 
+                <input type="text" class="form-control" name="" id="" placeholder="Number" #number 
+                value='{{this.users[edit].number}}'>
+                <input type="text" class="form-control" name="" id="" placeholder="City" #city 
+                value='{{this.users[edit].city}}'>
+                <input type="text" class="form-control" name="" id="" placeholder="Age" #age 
+                value='{{this.users[edit].age}}'>
+                <input type="text" class="form-control" name="" id="" placeholder="Photo (link)" #photo 
+                value='{{this.users[edit].photo}}'>
+
+                <button   type="button" class="btn btn-success float-right" 
+              (click)="editContact(firstName.value, secondName.value, number.value, city.value, age.value, photo.value)">EDIT
+            </button>
+
+              </div>
+
+              <div *ngIf=checkSearch>
+
+                  <input type="text" class="form-control" name="" id="" placeholder="First name" #firstName 
+                  value='{{this.users[this.usersSearch[this.editS].count].firstName}}'>
+                  <input type="text" class="form-control" name="" id="" placeholder="Second name" #secondName 
+                  value='{{this.users[this.usersSearch[this.editS].count].lastName}}'> 
+                  <input type="text" class="form-control" name="" id="" placeholder="Number" #number 
+                  value='{{this.users[this.usersSearch[this.editS].count].number}}'>
+                  <input type="text" class="form-control" name="" id="" placeholder="City" #city 
+                  value='{{this.users[this.usersSearch[this.editS].count].city}}'>
+                  <input type="text" class="form-control" name="" id="" placeholder="Age" #age 
+                  value='{{this.users[this.usersSearch[this.editS].count].age}}'>
+                  <input type="text" class="form-control" name="" id="" placeholder="Photo (link)" #photo 
+                  value='{{this.users[this.usersSearch[this.editS].count].photo}}'>
+
+                  <button *ngIf='checkSearch'  type="button" class="btn btn-success float-right" 
+                  (click)="editContactS(firstName.value, secondName.value, number.value, city.value, age.value, photo.value)">EDIT
+                </button>
+              </div>  
+
+           
+            </div>
+
+            
+            
+          </div>
+      </form>
+      <br *ngIf='alertAdd'>
+      <br *ngIf='alertAdd'>
+      <alert type="danger" [ngStyle]='{"margin-top":"25px"}' *ngIf='alertAdd' class='text-center text-uppercase'>
+         <span *ngIf='!checkReplica'><strong > Warning!</strong> Enter all the necessary data</span> 
+         <span *ngIf='checkReplica'><strong > Warning!</strong> Such a name or contact number already exists</span> 
+      </alert>
+      
+     
+  </div>
+
+</ng-template>
+
+
+</div>

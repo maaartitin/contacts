@@ -1,0 +1,21 @@
+.form-control{
+    margin-bottom: 10px;
+}
+
+
+.contactMain:hover{
+    background-color: #E0E6F8;
+}
+
+.btn-outline-light{
+    border:none;
+}
+
+.btn-outline-secondary{
+    margin-right: 5px;
+}
+
+.btn-outline-info{
+    margin-right: 5px;  
+}
+

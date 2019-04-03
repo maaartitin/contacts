@@ -1,0 +1,26 @@
+<div class="container">
+
+  <div class="column col-8 m-auto lead text-center" *ngIf='checkInfo'>
+    <button class="btn btn-primary mb-2 mt-3"  routerLink='/'>MAIN</button>
+    <hr>
+    <p class='h2'>{{users[indexInfo].firstName}} {{users[indexInfo].lastName}}</p>  
+    <div class='rounded mb-1'  [ngStyle]='{"width":"auto",  "height":"120px", 
+    "background-image": "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ7FPXpXXt9BTt4c4hR_Fqkj9-k2oGu5sBFlyEEnU41oUrOL5pyw)",
+    "background-size":"120px auto", "background-position":"50% 50%" ,"background-repeat":"no-repeat"}'>
+    <img  class='rounded' src='{{users[indexInfo].photo}}'  alt=""  [ngStyle]='{"height":"120px"}'>
+  </div>
+  
+    <p>First Name: {{users[indexInfo].firstName}}</p>
+    <p>Last Name: {{users[indexInfo].lastName}}</p>
+    <p>Number: {{users[indexInfo].number}}</p>
+    <p>City: {{users[indexInfo].city}}</p>
+    <p>Age: {{users[indexInfo].age}}</p>
+    <hr>
+    <!-- <p>Photo: {{users[indexInfo].photo}}</p> -->
+  </div>
+
+  <div class="column col-6 lead text-center m-auto"  *ngIf='!checkInfo'>
+      <button class="btn btn-primary mb-3 mt-3"  routerLink='/'>MAIN</button>
+    <p>Need choose or create the contact!</p>
+  </div>
+</div>
