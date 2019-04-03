@@ -266,6 +266,7 @@ export class MainComponent implements OnInit {
         }
         localStorage.setItem('USERS',  JSON.stringify(this.parseJN));
         this.users = JSON.parse(localStorage.getItem('USERS'));
+        
   }
 
   if(localStorage.getItem('USERS')) this.checkAuditSearch = true;
@@ -273,6 +274,7 @@ export class MainComponent implements OnInit {
 
   if(JSON.parse(localStorage.getItem('USERS')).length==0){
     this.checkAuditSearch = false;
+    this.checkSearch = false;
     localStorage.removeItem("USERS");
   }
 }
